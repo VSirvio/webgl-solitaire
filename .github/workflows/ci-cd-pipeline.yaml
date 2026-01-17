@@ -1,0 +1,25 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm clean-install
+
+      - name: Run ESLint
+        run: npm run lint
