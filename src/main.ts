@@ -1,13 +1,19 @@
-import './style.css'
-import { setupCounter } from './counter.ts'
+main()
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-  </div>
-`
+function main() {
+  const canvas: HTMLCanvasElement | null = document.querySelector('#gl-canvas')
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  if (!canvas) {
+    throw new Error('Canvas not found')
+  }
+
+  const gl = canvas.getContext('webgl')
+
+  if (!gl) {
+    alert('Unable to initialize WebGL. Your browser or machine may not support it.')
+    return
+  }
+
+  gl.clearColor(0.0, 0.0, 0.0, 1.0)
+  gl.clear(gl.COLOR_BUFFER_BIT)
+}
