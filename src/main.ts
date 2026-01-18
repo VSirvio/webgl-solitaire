@@ -117,7 +117,7 @@ function initPositionBuffer(gl: WebGLRenderingContext) {
 
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-  const positions = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
+  const positions = [0.7, 1.0, -0.7, 1.0, 0.7, -1.0, -0.7, -1.0];
 
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
@@ -255,7 +255,7 @@ function drawScene(gl: WebGLRenderingContext, programInfo, buffers, texture) {
   mat4.translate(
     modelViewMatrix,
     modelViewMatrix,
-    [-0.0, 0.0, -6.0]
+    [-0.0, 0.0, -12.0]
   );
 
   setPositionAttribute(gl, buffers, programInfo);
