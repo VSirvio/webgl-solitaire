@@ -64,7 +64,16 @@ function main() {
   const texture = loadTexture(gl, "card_back.png");
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
-  drawScene(gl, programInfo, buffers, texture);
+  function render() {
+    if (!gl) {
+      throw new Error("gl became null unexpectedly");
+    }
+
+    drawScene(gl, programInfo, buffers, texture);
+
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
 }
 
 function loadShader(gl: WebGLRenderingContext, type: number, source: string) {
@@ -119,7 +128,7 @@ function initTextureBuffer(gl: WebGLRenderingContext) {
   const textureCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
 
-  const textureCoordinates = [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0];
+  const textureCoordinates = [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0];
 
   gl.bufferData(
     gl.ARRAY_BUFFER,
