@@ -14,6 +14,6 @@ function main() {
     return
   }
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0)
+  gl.clearColor(0.364, 0.743, 0.385, 1.0)
   gl.clear(gl.COLOR_BUFFER_BIT)
 }
