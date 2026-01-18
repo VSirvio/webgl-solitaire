@@ -134,8 +134,13 @@ function drawScene(gl: WebGLRenderingContext, programInfo, buffers) {
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+  const canvas = gl.canvas;
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    throw new Error('gl.canvas is not an HTMLCanvasElement');
+  }
+
   const fieldOfView = (45 * Math.PI) / 180;
-  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+  const aspect = canvas.clientWidth / canvas.clientHeight;
   const zNear = 0.1;
   const zFar = 100.0;
   const projectionMatrix = mat4.create();
